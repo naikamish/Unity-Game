@@ -14,4 +14,10 @@ public class Coin : MonoBehaviour {
 		Quaternion rotation = Quaternion.Euler(new Vector3(90,roty,90));
 		transform.rotation = rotation;
 	}
+
+	void OnTriggerEnter(Collider collider){
+		if (collider.gameObject.tag == "player") {
+			Destroy (gameObject);
+		}
+	}
 }

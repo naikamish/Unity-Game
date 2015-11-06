@@ -45,9 +45,16 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Bomb.cs" />
+     <Compile Include="Assets\Script\Cloud.cs" />
      <Compile Include="Assets\Script\Coin.cs" />
      <Compile Include="Assets\Script\FPSInput.cs" />
+     <Compile Include="Assets\Script\FallingPlatform.cs" />
+     <Compile Include="Assets\Script\GameManager.cs" />
+     <Compile Include="Assets\Script\HoldCharacter.cs" />
      <Compile Include="Assets\Script\MouseLook.cs" />
+     <Compile Include="Assets\Script\MovingPlatform.cs" />
+     <Compile Include="Assets\Script\Player.cs" />
      <Compile Include="Assets\Script\RayShooter.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
