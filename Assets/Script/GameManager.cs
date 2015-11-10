@@ -6,10 +6,19 @@ public class GameManager : MonoBehaviour {
 	public float dist=40f, off=10f;
 	// Use this for initialization
 	void Start () {
+		/*************************
+		 * Moving Platforms
+		 *************************/
+
+		//Move in x direction
 		GameObject movingPlatform = Instantiate (movingPlatformPrefab, new Vector3 (10, 0, 0), Quaternion.identity) as GameObject;
-		movingPlatform.SendMessage ("setBounds", new Vector2(10f, 30f));
+		movingPlatform.SendMessage ("setBounds", new Vector3 (10f, 30f, 0f));
 		GameObject movingPlatform2 = Instantiate (movingPlatformPrefab, new Vector3 (50, 0, 0), Quaternion.identity) as GameObject;
-		movingPlatform2.SendMessage ("setBounds", new Vector2(50f, 62f));
+		movingPlatform2.SendMessage ("setBounds", new Vector3 (50f, 62f, 0f));
+
+		//Move in z direction
+		GameObject movingPlatform3 = Instantiate (movingPlatformPrefab, new Vector3 (80, 0, 10), Quaternion.identity) as GameObject;
+		movingPlatform3.SendMessage ("setBounds", new Vector3 (10f, 30f, 1f));
 
 		/*************************
 		 * Falling Platforms

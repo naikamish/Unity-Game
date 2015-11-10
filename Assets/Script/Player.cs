@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 	float delta, speed=10f, jumpCount, camDistance=50f, camY=5f;
-	int rotationTime = 100;
+	int setRotationTime = 30;
+	int rotationTime;
 	bool grounded, isRotating = false;
 	public GameObject cam;
 	Vector3 pos, camPos;
@@ -12,7 +13,7 @@ public class Player : MonoBehaviour {
 	float camCurrX, camCurrZ, camNewX, camNewZ, rotationAngle, deltaX, deltaZ, deltaRotation;
 
 	void Start () {
-
+		rotationTime = setRotationTime;
 	}
 	
 	// Update is called once per frame
@@ -29,7 +30,6 @@ public class Player : MonoBehaviour {
 		pos = transform.position;
 
 		delta = Input.GetAxis ("Horizontal");
-
 		if (!isRotating) {
 			if (rotated % 4 == 0) {
 				pos.x += delta * speed * Time.deltaTime;
@@ -52,7 +52,6 @@ public class Player : MonoBehaviour {
 		}
 
 		rotateCamera ();
-		Debug.Log (cam.transform.position);
 	}
 
 	void jumpAction(){
@@ -67,38 +66,49 @@ public class Player : MonoBehaviour {
 	}
 
 	void rotateGame(){
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+		if (Input.GetAxis ("Vertical")!=0) {
+			if(Input.GetAxis ("Vertical")>0){
+				rotated++;
+				rotationAngle=-90f;
+			}
+			else if(Input.GetAxis ("Vertical")<0){
+				rotated--;
+				rotationAngle=90f;
+			}
 			camCurrX = cam.transform.position.x;
 			camCurrZ = cam.transform.position.z;
+
 			if (rotated%4==0) {
-				camNewX=transform.position.x+camDistance;
-				camNewZ=transform.position.z;
+				camNewX=transform.position.x;
+				camNewZ=transform.position.z-camDistance;
 
 				//cam.transform.position = new Vector3 (transform.position.x, transform.position.y+camY, transform.position.z - camDistance);
 			} 
 			else if (rotated%4==1) {
-				camNewX=transform.position.x;
-				camNewZ=transform.position.z+camDistance;
+				camNewX=transform.position.x+camDistance;
+				camNewZ=transform.position.z;
+
 
 				//cam.transform.position = new Vector3 (transform.position.x+camDistance, transform.position.y+camY, transform.position.z);
 			}
 			else if (rotated%4==2) {
-				camNewX=transform.position.x-camDistance;
-				camNewZ=transform.position.z;
+				camNewX=transform.position.x;
+				camNewZ=transform.position.z+camDistance;
+
 
 				//cam.transform.position = new Vector3 (transform.position.x, transform.position.y+camY, transform.position.z+camDistance);
 			}
 			else if (rotated%4==3) {
-				camNewX=transform.position.x;
-				camNewZ=transform.position.z-camDistance;
+				camNewX=transform.position.x-camDistance;
+				camNewZ=transform.position.z;
+
 				//cam.transform.position = new Vector3 (transform.position.x-camDistance, transform.position.y+camY, transform.position.z);
 			}
-			rotationAngle=-90f;
-			rotationTime=100;
+
+			rotationTime=setRotationTime;
 			deltaX=(camNewX-camCurrX)/rotationTime;
 			deltaZ=(camNewZ-camCurrZ)/rotationTime;
 			deltaRotation=rotationAngle/rotationTime;
-			rotated++;
 
 			isRotating=true;
 			//cam.transform.Rotate (0,-90f,0);
@@ -113,7 +123,6 @@ public class Player : MonoBehaviour {
 				camPos.z+=deltaZ;
 				cam.transform.position = camPos;
 				cam.transform.Rotate (0,deltaRotation,0);
-				Debug.Log (rotationTime);
 				rotationTime--;
 			}
 			else{
