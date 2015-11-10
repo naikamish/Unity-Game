@@ -2,11 +2,15 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	float delta, speed=10f, jumpCount, camDistance=50f;
-	bool grounded;
+	float delta, speed=10f, jumpCount, camDistance=50f, camY=5f;
+	int rotationTime = 100;
+	bool grounded, isRotating = false;
 	public GameObject cam;
-	Vector3 pos;
+	Vector3 pos, camPos;
 	int rotated=0;
+
+	float camCurrX, camCurrZ, camNewX, camNewZ, rotationAngle, deltaX, deltaZ, deltaRotation;
+
 	void Start () {
 
 	}
@@ -14,32 +18,41 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
-		//cam.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - 20);
+		//Prevent weirdness when making player the child of a platform
+		if(transform.parent!=null)
+			transform.localScale=new Vector3(1/transform.parent.localScale.x,1/transform.parent.localScale.y,1/transform.parent.localScale.z);
+		else
+			transform.localScale = new Vector3(1f,1f,1f);
+
+		transform.rotation = Quaternion.identity;
+
 		pos = transform.position;
 
 		delta = Input.GetAxis ("Horizontal");
 
-		if (rotated%4==0) {
-			pos.x += delta * speed * Time.deltaTime;
-			cam.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z - camDistance);
-		} 
-		else if (rotated%4==1) {
-			pos.z += delta * speed * Time.deltaTime;
-			cam.transform.position = new Vector3 (transform.position.x+camDistance, transform.position.y, transform.position.z);
-		}
-		else if (rotated%4==2) {
-			pos.x -= delta * speed * Time.deltaTime;
-			cam.transform.position = new Vector3 (transform.position.x, transform.position.y, transform.position.z+camDistance);
-		}
-		else if (rotated%4==3) {
-			pos.z -= delta * speed * Time.deltaTime;
-			cam.transform.position = new Vector3 (transform.position.x-camDistance, transform.position.y, transform.position.z);
+		if (!isRotating) {
+			if (rotated % 4 == 0) {
+				pos.x += delta * speed * Time.deltaTime;
+				cam.transform.position = new Vector3 (transform.position.x, transform.position.y + camY, transform.position.z - camDistance);
+			} else if (rotated % 4 == 1) {
+				pos.z += delta * speed * Time.deltaTime;
+				cam.transform.position = new Vector3 (transform.position.x + camDistance, transform.position.y + camY, transform.position.z);
+			} else if (rotated % 4 == 2) {
+				pos.x -= delta * speed * Time.deltaTime;
+				cam.transform.position = new Vector3 (transform.position.x, transform.position.y + camY, transform.position.z + camDistance);
+			} else if (rotated % 4 == 3) {
+				pos.z -= delta * speed * Time.deltaTime;
+				cam.transform.position = new Vector3 (transform.position.x - camDistance, transform.position.y + camY, transform.position.z);
+			}
+
+			rotateGame ();
+			jumpAction ();
+
+			transform.position = pos;
 		}
 
-		rotateGame ();
-		jumpAction ();
-
-		transform.position = pos;
+		rotateCamera ();
+		Debug.Log (cam.transform.position);
 	}
 
 	void jumpAction(){
@@ -55,8 +68,57 @@ public class Player : MonoBehaviour {
 
 	void rotateGame(){
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
+			camCurrX = cam.transform.position.x;
+			camCurrZ = cam.transform.position.z;
+			if (rotated%4==0) {
+				camNewX=transform.position.x+camDistance;
+				camNewZ=transform.position.z;
+
+				//cam.transform.position = new Vector3 (transform.position.x, transform.position.y+camY, transform.position.z - camDistance);
+			} 
+			else if (rotated%4==1) {
+				camNewX=transform.position.x;
+				camNewZ=transform.position.z+camDistance;
+
+				//cam.transform.position = new Vector3 (transform.position.x+camDistance, transform.position.y+camY, transform.position.z);
+			}
+			else if (rotated%4==2) {
+				camNewX=transform.position.x-camDistance;
+				camNewZ=transform.position.z;
+
+				//cam.transform.position = new Vector3 (transform.position.x, transform.position.y+camY, transform.position.z+camDistance);
+			}
+			else if (rotated%4==3) {
+				camNewX=transform.position.x;
+				camNewZ=transform.position.z-camDistance;
+				//cam.transform.position = new Vector3 (transform.position.x-camDistance, transform.position.y+camY, transform.position.z);
+			}
+			rotationAngle=-90f;
+			rotationTime=100;
+			deltaX=(camNewX-camCurrX)/rotationTime;
+			deltaZ=(camNewZ-camCurrZ)/rotationTime;
+			deltaRotation=rotationAngle/rotationTime;
 			rotated++;
-			cam.transform.Rotate (0,-90f,0);
+
+			isRotating=true;
+			//cam.transform.Rotate (0,-90f,0);
+		}
+	}
+
+	void rotateCamera(){
+		if (isRotating) {
+			if(rotationTime!=0){
+				camPos = cam.transform.position;
+				camPos.x+=deltaX;
+				camPos.z+=deltaZ;
+				cam.transform.position = camPos;
+				cam.transform.Rotate (0,deltaRotation,0);
+				Debug.Log (rotationTime);
+				rotationTime--;
+			}
+			else{
+				isRotating=false;
+			}
 		}
 	}
 
