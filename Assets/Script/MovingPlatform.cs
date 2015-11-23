@@ -5,9 +5,10 @@ public class MovingPlatform : MonoBehaviour {
 	private float speed = 5f;
 	private float leftBound=0f, rightBound=0f;
 	private float moveDirection=0;
+	public GameObject landMinePrefab;
+	GameObject landMine;
 	// Use this for initialization
 	void Start () {
-	
 	}
 	
 	// Update is called once per frame
@@ -41,5 +42,11 @@ public class MovingPlatform : MonoBehaviour {
 		leftBound = bounds.x;
 		rightBound = bounds.y;
 		moveDirection = bounds.z;
+		landMine = Instantiate (landMinePrefab, new Vector3(transform.position.x,transform.position.y+1,transform.position.z), Quaternion.identity) as GameObject;
+		landMine.SendMessage ("setBounds", bounds);
+	}
+
+	void OnDestroy(){
+		Destroy (landMine);
 	}
 }

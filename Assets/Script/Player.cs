@@ -2,13 +2,14 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	float delta, speed=10f, jumpCount, camDistance=50f, camY=5f;
+	float delta, speed=10f, jumpCount, camDistance=30f, camY=5f;
 	int setRotationTime = 30;
 	int rotationTime;
 	bool grounded, isRotating = false;
 	public GameObject cam;
 	Vector3 pos, camPos;
 	int rotated=0;
+	public GameObject gameManager;
 
 	float camCurrX, camCurrZ, camNewX, camNewZ, rotationAngle, deltaX, deltaZ, deltaRotation;
 
@@ -26,32 +27,33 @@ public class Player : MonoBehaviour {
 			transform.localScale = new Vector3(1f,1f,1f);
 
 		transform.rotation = Quaternion.identity;
-
 		pos = transform.position;
 
-		delta = Input.GetAxis ("Horizontal");
-		if (!isRotating) {
-			if (rotated % 4 == 0) {
-				pos.x += delta * speed * Time.deltaTime;
-				cam.transform.position = new Vector3 (transform.position.x, transform.position.y + camY, transform.position.z - camDistance);
-			} else if (rotated % 4 == 1) {
-				pos.z += delta * speed * Time.deltaTime;
-				cam.transform.position = new Vector3 (transform.position.x + camDistance, transform.position.y + camY, transform.position.z);
-			} else if (rotated % 4 == 2) {
-				pos.x -= delta * speed * Time.deltaTime;
-				cam.transform.position = new Vector3 (transform.position.x, transform.position.y + camY, transform.position.z + camDistance);
-			} else if (rotated % 4 == 3) {
-				pos.z -= delta * speed * Time.deltaTime;
-				cam.transform.position = new Vector3 (transform.position.x - camDistance, transform.position.y + camY, transform.position.z);
+		if (GameManager.canMove) {
+			delta = Input.GetAxis ("Horizontal");
+			if (!isRotating) {
+				if (rotated % 4 == 0) {
+					pos.x += delta * speed * Time.deltaTime;
+					cam.transform.position = new Vector3 (transform.position.x, transform.position.y + camY, transform.position.z - camDistance);
+				} else if (rotated % 4 == 1) {
+					pos.z += delta * speed * Time.deltaTime;
+					cam.transform.position = new Vector3 (transform.position.x + camDistance, transform.position.y + camY, transform.position.z);
+				} else if (rotated % 4 == 2) {
+					pos.x -= delta * speed * Time.deltaTime;
+					cam.transform.position = new Vector3 (transform.position.x, transform.position.y + camY, transform.position.z + camDistance);
+				} else if (rotated % 4 == 3) {
+					pos.z -= delta * speed * Time.deltaTime;
+					cam.transform.position = new Vector3 (transform.position.x - camDistance, transform.position.y + camY, transform.position.z);
+				}
+
+				rotateGame ();
+				jumpAction ();
+
+				transform.position = pos;
 			}
 
-			rotateGame ();
-			jumpAction ();
-
-			transform.position = pos;
+			rotateCamera ();
 		}
-
-		rotateCamera ();
 	}
 
 	void jumpAction(){
@@ -72,7 +74,10 @@ public class Player : MonoBehaviour {
 				rotationAngle=-90f;
 			}
 			else if(Input.GetAxis ("Vertical")<0){
-				rotated--;
+				if(!(rotated<=0)){
+					rotated--;
+				}
+				else rotated+=3;
 				rotationAngle=90f;
 			}
 			camCurrX = cam.transform.position.x;
