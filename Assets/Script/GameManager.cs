@@ -5,17 +5,18 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 	public GameObject movingPlatformPrefab, fallingPlatformPrefab, floatingIslandPrefab,
-						upDownPlatformPrefab;
+						upDownPlatformPrefab, deathZonePrefab;
 	public List<GameObject> gameObjects = new List<GameObject>();
 	public float dist=40f, off=10f;
 	private float timer=100f;
 	public Text livesText, timerText;
 	public static bool canMove = true;
-	int lives=3;
+	public int lives;
 	private Rigidbody rigidbody;
 	public GameObject explosion;
 	// Use this for initialization
 	void Start () {
+		lives = 3;
 		rigidbody = GetComponent<Rigidbody> ();
 		CreateObjects ();
 	}
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	public void Die(){
-		RecreateGame();
+		RecreateGame ();
 	}
 
 	void RecreateGame(){
@@ -50,13 +51,18 @@ public class GameManager : MonoBehaviour {
 		timer = 100f;
 	}
 	public void SimulateDeath(){
-		canMove = false;
-		transform.parent = null;
-		Vector3 posit = transform.position;
-		posit.y += 1f;
-		transform.position = posit;
-		rigidbody.isKinematic = true;
-		StartCoroutine (SlowDeath ());
+		if (!(lives == 0)) {
+			canMove = false;
+			transform.parent = null;
+			Vector3 posit = transform.position;
+			posit.y += 1f;
+			transform.position = posit;
+			rigidbody.isKinematic = true;
+			StartCoroutine (SlowDeath ());
+		}
+		else
+			Application.LoadLevel (2);
+
 
 	}
 
@@ -107,6 +113,12 @@ public class GameManager : MonoBehaviour {
 		gameObjects.Add(Instantiate (floatingIslandPrefab, new Vector3 (dist*2, 0, dist*2), Quaternion.identity) as GameObject);
 		
 		gameObjects.Add(Instantiate (floatingIslandPrefab, new Vector3 (dist*2, -100f, dist*2), Quaternion.identity) as GameObject);
+
+		/*************************
+		 * Death Zones
+		 *************************/
+		gameObjects.Add(Instantiate (deathZonePrefab, new Vector3 (90f, -20f, 30f), Quaternion.identity) as GameObject);
+		gameObjects.Add(Instantiate (deathZonePrefab, new Vector3 (80f,-120f,80f), Quaternion.identity) as GameObject);
 
 	}
 }

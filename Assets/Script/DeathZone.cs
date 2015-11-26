@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class DeathZone : MonoBehaviour {
-
+	bool isTriggered = false;
 	// Use this for initialization
 	void Start () {
 	
@@ -10,13 +10,19 @@ public class DeathZone : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 
 	void OnTriggerEnter(Collider collider){
 		GameManager target = collider.gameObject.GetComponent<GameManager>();
-		if (target != null) {
+
+		if(!isTriggered && target != null){
+			isTriggered=true;
+			Debug.Log ("hello");
 			target.SimulateDeath ();
+			
 		}
+
+		Destroy (gameObject);
 	}
 }
