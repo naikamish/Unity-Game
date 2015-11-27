@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class CustomTeleporter : MonoBehaviour
 {
@@ -18,9 +19,10 @@ public class CustomTeleporter : MonoBehaviour
 	//only allow specific tag object? if left empty, any object can teleport
 	public string objectTag = "if empty, any object will tp";
 	//one or more destination pads
-	public Transform[] destinationPad;
+	public List<Transform> destinationPad = new List<Transform>();
+	//public Transform[] destinationPad = new Transform[1];
 	//height offset
-	public float teleportationHeightOffset = 1;
+	float teleportationHeightOffset = 5;
 	//a private float counting down the time
 	private float curTeleportTime;
 	//private bool checking if you entered the trigger
@@ -67,7 +69,7 @@ public class CustomTeleporter : MonoBehaviour
 			if(randomTeleport)
 			{
 				//choose a random pad from the array
-				int chosenPad = Random.Range(0,destinationPad.Length);
+				int chosenPad = Random.Range(0,destinationPad.Count);
 				//set arrived to true in that array, so it doesnt teleport the subject back
 				destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
 				//and teleport the subject
@@ -98,7 +100,7 @@ public class CustomTeleporter : MonoBehaviour
 				if(randomTeleport)
 				{
 					//choose a random pad from the array
-					int chosenPad = Random.Range(0,destinationPad.Length);
+					int chosenPad = Random.Range(0,destinationPad.Count);
 					//set arrived to true in that array, so it doesnt teleport the subject back
 					destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
 					//teleport
@@ -136,7 +138,7 @@ public class CustomTeleporter : MonoBehaviour
 						if(randomTeleport)
 						{
 							//choose a random pad from the array
-							int chosenPad = Random.Range(0,destinationPad.Length);
+							int chosenPad = Random.Range(0,destinationPad.Count);
 							//set arrived to true in that array, so it doesnt teleport the subject back
 							destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
 							//teleport
@@ -159,7 +161,7 @@ public class CustomTeleporter : MonoBehaviour
 				else if(randomTeleport)
 				{
 					//choose a random pad from the array
-					int chosenPad = Random.Range(0,destinationPad.Length);
+					int chosenPad = Random.Range(0,destinationPad.Count);
 					//set arrived to true in that array, so it doesnt teleport the subject back
 					destinationPad[chosenPad].GetComponent<CustomTeleporter>().arrived = true;
 					//teleport
@@ -257,5 +259,9 @@ public class CustomTeleporter : MonoBehaviour
 			//remove the subject from the pads memory
 			subject = null;
 		}
+	}
+
+	void addTeleporter(GameObject teleporter){
+		destinationPad.Add (teleporter.transform);
 	}
 }

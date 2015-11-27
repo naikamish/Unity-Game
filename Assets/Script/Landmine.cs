@@ -39,8 +39,8 @@ public class Landmine : MonoBehaviour {
 	}
 
 	void setBounds(Vector3 bounds){
-		leftBound = (Mathf.Floor(bounds.x/40f))*40f+10f;
-		rightBound = leftBound+20f;
+		leftBound = (Mathf.Floor(bounds.x/40f))*40f+15f;
+		rightBound = leftBound+10f;
 		moveDirection = bounds.z;
 	}
 

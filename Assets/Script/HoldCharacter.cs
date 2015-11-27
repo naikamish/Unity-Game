@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
 public class HoldCharacter : MonoBehaviour {
 
 	void OnTriggerEnter(Collider collider){

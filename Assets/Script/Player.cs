@@ -136,7 +136,7 @@ public class Player : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter()
+	void OnTriggerStay()
 	{
 		grounded = true;
 	}

@@ -18,7 +18,6 @@ public class DeathZone : MonoBehaviour {
 
 		if(!isTriggered && target != null){
 			isTriggered=true;
-			Debug.Log ("hello");
 			target.SimulateDeath ();
 			
 		}
