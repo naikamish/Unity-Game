@@ -3,10 +3,11 @@ using System.Collections;
 
 public class Hover : MonoBehaviour {
 	float yBound=0f;
-	float speed = 1f;
+	float speed;
 	// Use this for initialization
 	void Start () {
 		yBound = transform.position.y;
+		speed = Random.value;
 	}
 	
 	// Update is called once per frame

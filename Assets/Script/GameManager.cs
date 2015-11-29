@@ -5,10 +5,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 	public GameObject movingPlatformPrefab, fallingPlatformPrefab, floatingIslandPrefab,
-						upDownPlatformPrefab, deathZonePrefab, teleporterPrefab, workstationPrefab;
+						deathZonePrefab, teleporterPrefab, workstationPrefab,
+						giantRollingSpikeBallPrefab;
 	public List<GameObject> gameObjects = new List<GameObject>();
 	public float dist=40f, off=10f;
-	private float timer=100f;
+	private float timer=200f;
 	public Text livesText, timerText;
 	public static bool canMove = true;
 	public int lives;
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour {
 		}
 		gameObjects = new List<GameObject>();
 		CreateObjects ();
-		timer = 100f;
+		timer = 200f;
 	}
 	public void SimulateDeath(){
 		if (!(lives == 0)) {
@@ -100,19 +101,32 @@ public class GameManager : MonoBehaviour {
 
 		gameObjects.Add(Instantiate (movingPlatformPrefab, new Vector3 (170, 0, 0), Quaternion.identity) as GameObject);
 		gameObjects[5].SendMessage ("setBounds", new Vector3 (170f, 190f, 0f));
+
+		gameObjects.Add(Instantiate (movingPlatformPrefab, new Vector3 (85f, -100f, -40f), Quaternion.identity) as GameObject);
+		gameObjects[6].SendMessage ("setBounds", new Vector3 (85f, 110f, 0f));
+
+		gameObjects.Add(Instantiate (movingPlatformPrefab, new Vector3 (240f, -100f, -30f), Quaternion.identity) as GameObject);
+		gameObjects[7].SendMessage ("setBounds", new Vector3 (-30f, -10f, 1f));
 		//Move in z direction
 
 
 		/*************************
 		 * Teleporter
 		 *************************/
-		gameObjects.Add(Instantiate (teleporterPrefab, new Vector3 (dist*2, -100f, dist*1), Quaternion.Euler(new Vector3(-90, 0, 0))) as GameObject);
+		gameObjects.Add(Instantiate (teleporterPrefab, new Vector3 (dist*6, -100f, dist*1), Quaternion.Euler(new Vector3(-90, 0, 0))) as GameObject);
 		gameObjects.Add(Instantiate (teleporterPrefab, new Vector3 (dist*4, 0f, 0f), Quaternion.Euler(new Vector3(-90, 0, 0))) as GameObject);
 
-		gameObjects[6].SendMessage ("addTeleporter", gameObjects[7]);
-		gameObjects[7].SendMessage ("addTeleporter", gameObjects[6]);
+		gameObjects[8].SendMessage ("addTeleporter", gameObjects[9]);
+		gameObjects[9].SendMessage ("addTeleporter", gameObjects[8]);
 		//gameObjects.Add(Instantiate (upDownPlatformPrefab, new Vector3 (80, 0, 90), Quaternion.identity) as GameObject);
-		
+
+		/*************************
+		 * Death Zones
+		 *************************/
+		gameObjects.Add(Instantiate (deathZonePrefab, new Vector3 (125f, -20f, 30f), Quaternion.identity) as GameObject);
+		gameObjects[10].transform.localScale = new Vector3(300f,1f,90f);
+		gameObjects.Add(Instantiate (deathZonePrefab, new Vector3 (175f,-120f,0f), Quaternion.identity) as GameObject);
+		gameObjects[11].transform.localScale = new Vector3(250f, 1f, 200f);
 		/*************************
 		 * Falling Platforms
 		 *************************/
@@ -126,7 +140,10 @@ public class GameManager : MonoBehaviour {
 		//GameObject fallingPlatform5 = Instantiate (fallingPlatformPrefab, new Vector3 (80, 0, 90), Quaternion.identity) as GameObject;
 		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (80, 0, 90), Quaternion.identity) as GameObject);
 
-		
+		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (240f, -100f, 10), Quaternion.identity) as GameObject);
+		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (240f, -100f, 20), Quaternion.identity) as GameObject);
+		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (240f, -100f, 30), Quaternion.identity) as GameObject);
+
 		/*************************
 		 * Floating Islands
 		 *************************/
@@ -141,18 +158,22 @@ public class GameManager : MonoBehaviour {
 		gameObjects.Add(Instantiate (floatingIslandPrefab, new Vector3 (dist*2, 0, dist*2), Quaternion.identity) as GameObject);
 		
 		gameObjects.Add(Instantiate (floatingIslandPrefab, new Vector3 (dist*2, -100f, dist*2), Quaternion.identity) as GameObject);
-		gameObjects.Add(Instantiate (floatingIslandPrefab, new Vector3 (dist*2, -100f, dist*1), Quaternion.identity) as GameObject);
 
-		/*************************
-		 * Death Zones
-		 *************************/
-		gameObjects.Add(Instantiate (deathZonePrefab, new Vector3 (125f, -20f, 30f), Quaternion.identity) as GameObject);
-		gameObjects.Add(Instantiate (deathZonePrefab, new Vector3 (80f,-120f,80f), Quaternion.identity) as GameObject);
+		gameObjects.Add(Instantiate (floatingIslandPrefab, new Vector3 (dist*4, -100f, -30), Quaternion.identity) as GameObject);
+		gameObjects.Add(Instantiate (floatingIslandPrefab, new Vector3 (dist*5, -100f, -30), Quaternion.identity) as GameObject);
+
+		gameObjects.Add(Instantiate (floatingIslandPrefab, new Vector3 (dist*6, -100f, 0), Quaternion.identity) as GameObject);
+		gameObjects.Add(Instantiate (floatingIslandPrefab, new Vector3 (dist*6, -100f, dist*1), Quaternion.identity) as GameObject);
 
 		/*************************
 		 * Workstation
 		 *************************/
-		gameObjects.Add(Instantiate (workstationPrefab, new Vector3 (202f,0,0f), Quaternion.Euler(new Vector3(0, -90,0))) as GameObject);
+		gameObjects.Add (Instantiate (workstationPrefab, new Vector3 (202f, 0, 0f), Quaternion.Euler (new Vector3 (0, -90, 0))) as GameObject);
+
+		/*************************
+		 * Giant Rolling Spike Ball
+		 *************************/
+		gameObjects.Add (Instantiate (giantRollingSpikeBallPrefab, new Vector3 (125f, -100f, -40f), Quaternion.Euler (new Vector3 (270, 0, 0))) as GameObject);
 
 	}
 }

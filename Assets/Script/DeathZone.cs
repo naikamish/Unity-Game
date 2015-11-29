@@ -18,10 +18,7 @@ public class DeathZone : MonoBehaviour {
 
 		if(!isTriggered && target != null){
 			isTriggered=true;
-			target.SimulateDeath ();
-			
+			target.SimulateDeath ();			
 		}
-
-		Destroy (gameObject);
 	}
 }
