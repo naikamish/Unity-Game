@@ -2,10 +2,10 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-	float delta, speed=10f, jumpCount, camDistance=30f, camY=5f;
+	public float delta, speed=10f, jumpCount, camDistance=30f, camY=5f;
 	int setRotationTime = 30;
 	int rotationTime;
-	bool grounded, isRotating = false;
+	public bool grounded, isRotating = false;
 	public GameObject cam;
 	Vector3 pos, camPos;
 	int rotated=0;
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update ()
+	void FixedUpdate ()
 	{
 		//Prevent weirdness when making player the child of a platform
 		if(transform.parent!=null)
@@ -47,8 +47,7 @@ public class Player : MonoBehaviour {
 				}
 
 				rotateGame ();
-				jumpAction ();
-
+				jumpActionFixed();
 				transform.position = pos;
 			}
 
@@ -56,11 +55,18 @@ public class Player : MonoBehaviour {
 		}
 	}
 
+	void Update(){
+		//Debug.Log ("hello");
+		jumpAction ();
+	}
+
 	void jumpAction(){
-		if (Input.GetKeyDown (KeyCode.Space)&&grounded) {
-			jumpCount = 30f;			
+		if (Input.GetKeyDown (KeyCode.Space) && grounded) {
+			jumpCount = 30f;
 		}
-		
+	}
+
+	void jumpActionFixed(){
 		if(jumpCount>0){
 			pos.y+=0.25f;
 			jumpCount--;

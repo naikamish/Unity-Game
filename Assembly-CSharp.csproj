@@ -51,6 +51,7 @@
      <Compile Include="Assets\Script\Cloud.cs" />
      <Compile Include="Assets\Script\Coin.cs" />
      <Compile Include="Assets\Script\DeathZone.cs" />
+     <Compile Include="Assets\Script\Explosion.cs" />
      <Compile Include="Assets\Script\FPSInput.cs" />
      <Compile Include="Assets\Script\Fade.cs" />
      <Compile Include="Assets\Script\FallingPlatform.cs" />

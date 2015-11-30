@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour {
 						giantRollingSpikeBallPrefab;
 	public List<GameObject> gameObjects = new List<GameObject>();
 	public float dist=40f, off=10f;
-	private float timer=200f;
+	private float timer=5f;
 	public Text livesText, timerText;
 	public static bool canMove = true;
 	public int lives;
@@ -27,10 +27,12 @@ public class GameManager : MonoBehaviour {
 		timer -= Time.deltaTime;
 		timerText.text = "" + (int)timer;
 		if (timer <= 0) {
-			Die ();
+			SimulateDeath ();
+			timer=200;
 		}
 		if (transform.position.y < -150) {
-			Die ();
+			SimulateDeath ();
+			transform.position = new Vector3(transform.position.x, transform.position.y+5, transform.position.z);
 		}
 	}
 
@@ -43,7 +45,7 @@ public class GameManager : MonoBehaviour {
 		rigidbody.isKinematic = false;
 		lives--;
 		livesText.text = "Lives: " + lives;
-		transform.position = new Vector3 (80,-95,80);
+		transform.position = new Vector3 (0,5,0);
 		foreach(GameObject gObject in gameObjects){
 			Destroy(gObject);
 		}
