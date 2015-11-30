@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour {
 		rigidbody.isKinematic = false;
 		lives--;
 		livesText.text = "Lives: " + lives;
-		transform.position = new Vector3 (0, 5, 0);
+		transform.position = new Vector3 (80,-95,80);
 		foreach(GameObject gObject in gameObjects){
 			Destroy(gObject);
 		}
@@ -52,17 +52,13 @@ public class GameManager : MonoBehaviour {
 		timer = 200f;
 	}
 	public void SimulateDeath(){
-		if (!(lives == 0)) {
-			canMove = false;
-			transform.parent = null;
-			Vector3 posit = transform.position;
-			posit.y += 1f;
-			transform.position = posit;
-			rigidbody.isKinematic = true;
-			StartCoroutine (SlowDeath ());
-		}
-		else
-			Application.LoadLevel (2);
+		canMove = false;
+		transform.parent = null;
+		Vector3 posit = transform.position;
+		posit.y += 1f;
+		transform.position = posit;
+		rigidbody.isKinematic = true;
+		StartCoroutine (SlowDeath ());
 
 
 	}
@@ -71,6 +67,9 @@ public class GameManager : MonoBehaviour {
 		Instantiate(explosion, transform.position, Quaternion.identity);
 		yield return new WaitForSeconds (0.3f);
 		Die ();
+		if (lives == 0) {
+			Application.LoadLevel (2);
+		}
 	}
 
 	public void WinGame(){

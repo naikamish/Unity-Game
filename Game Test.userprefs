@@ -1,21 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\GameManager.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Player.cs">
     <Files>
-      <File FileName="Assets\Script\StartMenu.cs" Line="8" Column="27" />
-      <File FileName="Assets\Script\GameManager.cs" Line="174" Column="25" />
-      <File FileName="Assets\Script\DeathZone.cs" Line="21" Column="28" />
-      <File FileName="Assets\Script\Bomb.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\FallingPlatform.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\KeyCollected.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\LoadLevel.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Player.cs" Line="27" Column="49" />
-      <File FileName="Assets\Script\Hover.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\MainMenuPlatform.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\RollingSpikeBall.cs" Line="5" Column="30" />
-      <File FileName="Assets\Script\Cloud.cs" Line="11" Column="32" />
-      <File FileName="Assets\Script\GiantRollingSpikeBall.cs" Line="6" Column="18" />
-      <File FileName="Assets\Script\MovingPlatform.cs" Line="22" Column="5" />
+      <File FileName="Assets\Script\Player.cs" Line="24" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
