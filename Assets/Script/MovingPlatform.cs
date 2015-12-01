@@ -12,7 +12,7 @@ public class MovingPlatform : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		Vector3 pos = transform.position;
 
 		if (moveDirection == 0f) {

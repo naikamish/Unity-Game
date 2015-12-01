@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour {
 	public GameObject movingPlatformPrefab, fallingPlatformPrefab, floatingIslandPrefab,
 						deathZonePrefab, teleporterPrefab, workstationPrefab,
 						giantRollingSpikeBallPrefab;
-	public List<GameObject> gameObjects = new List<GameObject>();
-	public float dist=40f, off=10f;
-	private float timer=5f;
+	private List<GameObject> gameObjects = new List<GameObject>();
+	private float dist=40f, off=10f;
+	private float timer=300f;
 	public Text livesText, timerText;
 	public static bool canMove = true;
 	public int lives;
@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour {
 		timerText.text = "" + (int)timer;
 		if (timer <= 0) {
 			SimulateDeath ();
-			timer=200;
+			timer=300;
 		}
 		if (transform.position.y < -150) {
 			SimulateDeath ();
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
 		}
 		gameObjects = new List<GameObject>();
 		CreateObjects ();
-		timer = 200f;
+		timer = 300f;
 	}
 	public void SimulateDeath(){
 		canMove = false;
@@ -133,7 +133,6 @@ public class GameManager : MonoBehaviour {
 		 *************************/
 		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (70, 0, 0), Quaternion.identity) as GameObject);
 		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (90, 0, 0), Quaternion.identity) as GameObject);
-		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (100, 0, 0), Quaternion.identity) as GameObject);
 		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (110, 0, 0), Quaternion.identity) as GameObject);
 		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (120, 0, 0), Quaternion.identity) as GameObject);
 		gameObjects.Add(Instantiate (fallingPlatformPrefab, new Vector3 (130, 0, 0), Quaternion.identity) as GameObject);

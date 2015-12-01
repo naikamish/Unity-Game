@@ -12,9 +12,9 @@ public class FallingPlatform : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 		if (isFalling) {
-			downSpeed += Time.deltaTime/5;
+			downSpeed += Time.deltaTime/3;
 			transform.position=new Vector3(transform.position.x, transform.position.y-downSpeed, transform.position.z);
 		}
 	}
