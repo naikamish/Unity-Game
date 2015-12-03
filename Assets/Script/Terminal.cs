@@ -2,17 +2,7 @@
 using System.Collections;
 
 public class Terminal : MonoBehaviour {
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
+	//When the player collides with the terminal, cause the player to win the game
 	void OnTriggerEnter(Collider collider){
 		GameManager target = collider.gameObject.GetComponent<GameManager>();
 		if (target != null) {
