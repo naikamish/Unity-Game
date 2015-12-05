@@ -1,25 +1,25 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Terminal.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Map.cs">
     <Files>
-      <File FileName="Assets\Script\GameManager.cs" Line="166" Column="3" />
-      <File FileName="Assets\Script\Player.cs" Line="166" Column="82" />
-      <File FileName="Assets\Script\Fade.cs" Line="31" Column="49" />
-      <File FileName="Assets\Script\Explosion.cs" Line="5" Column="47" />
-      <File FileName="Assets\Script\MovingPlatform.cs" Line="5" Column="56" />
-      <File FileName="Assets\Script\FallingPlatform.cs" Line="22" Column="78" />
-      <File FileName="Assets\Script\Bomb.cs" Line="22" Column="4" />
-      <File FileName="Assets\Script\Cloud.cs" Line="51" Column="67" />
-      <File FileName="Assets\Script\DeathZone.cs" Line="13" Column="52" />
-      <File FileName="Assets\Script\GiantRollingSpikeBall.cs" Line="27" Column="55" />
-      <File FileName="Assets\Script\HoldCharacter.cs" Line="10" Column="3" />
-      <File FileName="Assets\Script\Hover.cs" Line="21" Column="78" />
-      <File FileName="Assets\Script\Landmine.cs" Line="43" Column="3" />
-      <File FileName="Assets\Script\LoadLevel.cs" Line="8" Column="66" />
-      <File FileName="Assets\Script\MainMenuPlatform.cs" Line="13" Column="3" />
-      <File FileName="Assets\Script\RollingSpikeBall.cs" Line="5" Column="56" />
-      <File FileName="Assets\Script\StartMenu.cs" Line="52" Column="48" />
-      <File FileName="Assets\Script\Terminal.cs" Line="5" Column="80" />
+      <File FileName="Assets\Script\Map.cs" Line="17" Column="39" />
+      <File FileName="Assets\Script\Bomb.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Cloud.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\DeathZone.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Explosion.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Fade.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\FallingPlatform.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\GameManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\GiantRollingSpikeBall.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\HoldCharacter.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Hover.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Landmine.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\LoadLevel.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\MainMenuPlatform.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\MovingPlatform.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\Player.cs" Line="82" Column="41" />
+      <File FileName="Assets\Script\RollingSpikeBall.cs" Line="1" Column="1" />
+      <File FileName="Assets\Script\StartMenu.cs" Line="15" Column="19" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

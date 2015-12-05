@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour {
 	//This is the script that controls the player movements
@@ -7,11 +8,12 @@ public class Player : MonoBehaviour {
 	int setRotationTime = 30;
 	int rotationTime;
 	private bool grounded, isRotating = false;
-	public GameObject cam;
+	public GameObject cam, map;
 	Vector3 pos, camPos;
 	int rotated=0;
 	public AudioClip jumpSound;
 	private AudioSource source;
+	public Image mapImage;
 
 	float camCurrX, camCurrZ, camNewX, camNewZ, rotationAngle, deltaX, deltaZ, deltaRotation;
 
@@ -72,6 +74,14 @@ public class Player : MonoBehaviour {
 	//in fixed update the jump button doesn't always work correctly
 	void Update(){
 		jumpAction ();
+		openMap();
+	}
+
+	void openMap(){
+		if (Input.GetKeyDown (KeyCode.M)) {
+			mapImage.enabled = !mapImage.enabled;
+			map.SetActive(!map.activeSelf);
+		}
 	}
 
 	void jumpAction(){
