@@ -50,7 +50,7 @@ public class Cloud : MonoBehaviour {
 			} 
 			//If the player is on the lower level, create the rolling bombs
 			else if (player.transform.position.y < -90f) {
-				Instantiate (rollingSpikeBallPrefab, new Vector3 (80f, -100f, -75f), Quaternion.Euler (new Vector3 (0, 0, 0)));
+				Instantiate (rollingSpikeBallPrefab, new Vector3 (80f, -100f, -70f), Quaternion.Euler (new Vector3 (0, 0, 0)));
 			}
 		}
 	}

@@ -20,6 +20,8 @@ public class Player : MonoBehaviour {
 	void Start () {
 		rotationTime = setRotationTime;
 		source = GetComponent<AudioSource>();
+		mapImage.enabled = false;
+		map.SetActive(false);
 	}
 	
 	// Fixed update is used to avoid jittery movement caused by normal update
@@ -73,8 +75,20 @@ public class Player : MonoBehaviour {
 	//Normal update function is used to ensure the player jumps correctly,
 	//in fixed update the jump button doesn't always work correctly
 	void Update(){
-		jumpAction ();
-		openMap();
+		if(!(Time.timeScale==0)){
+			jumpAction ();
+			openMap();
+		}
+		checkPaused ();
+	}
+
+	void checkPaused(){
+		if (Input.GetKeyDown (KeyCode.P)) {
+			if(Time.timeScale==0)
+				Time.timeScale = 1;
+			else
+				Time.timeScale =0;
+		}
 	}
 
 	void openMap(){

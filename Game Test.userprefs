@@ -1,8 +1,9 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\Map.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script\RollingSpikeBall.cs">
     <Files>
-      <File FileName="Assets\Script\Map.cs" Line="17" Column="39" />
+      <File FileName="Assets\Script\Player.cs" Line="78" Column="27" />
+      <File FileName="Assets\Script\Map.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Bomb.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\Cloud.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\DeathZone.cs" Line="1" Column="1" />
@@ -17,9 +18,8 @@
       <File FileName="Assets\Script\LoadLevel.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\MainMenuPlatform.cs" Line="1" Column="1" />
       <File FileName="Assets\Script\MovingPlatform.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\Player.cs" Line="82" Column="41" />
       <File FileName="Assets\Script\RollingSpikeBall.cs" Line="1" Column="1" />
-      <File FileName="Assets\Script\StartMenu.cs" Line="15" Column="19" />
+      <File FileName="Assets\Script\StartMenu.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
